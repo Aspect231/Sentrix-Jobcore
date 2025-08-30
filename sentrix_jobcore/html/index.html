@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sentrix Jobcore</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <div id="jobcore-container" class="hidden">
+        <div class="job-panel">
+            <div class="panel-header">
+                <div class="job-title">
+                    <i class="fas fa-briefcase"></i>
+                    <span id="job-name">Job Name</span>
+                    <span id="job-level" class="level-badge">Level 1</span>
+                </div>
+                <button class="close-btn" onclick="closeUI()">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+
+            <div class="panel-content">
+                <div class="xp-section">
+                    <div class="xp-info">
+                        <div class="xp-text">
+                            <span id="current-xp">0</span> / <span id="needed-xp">200</span> XP
+                        </div>
+                        <div class="xp-status" id="xp-status">Level 1 Progress</div>
+                    </div>
+                    <div class="xp-bar">
+                        <div class="xp-progress" id="xp-progress" style="width: 0%"></div>
+                    </div>
+                </div>
+
+                <div class="actions-section">
+                    <button class="action-btn clock-in" id="clock-in-btn" onclick="clockIn()">
+                        <i class="fas fa-clock"></i>
+                        <div class="btn-content">
+                            <span class="btn-title">Clock In</span>
+                            <span class="btn-desc">Start working</span>
+                        </div>
+                    </button>
+
+                    <button class="action-btn clock-out disabled" id="clock-out-btn" onclick="clockOut()">
+                        <i class="fas fa-clock"></i>
+                        <div class="btn-content">
+                            <span class="btn-title">Clock Out</span>
+                            <span class="btn-desc">Stop working</span>
+                        </div>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
