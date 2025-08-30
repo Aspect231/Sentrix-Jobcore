@@ -2,8 +2,8 @@ fx_version 'adamant'
 game 'gta5'
 lua54 'yes'
 
-author '?? Development'
-description '[??] Jobcore'
+author 'Sentrix Development'
+description '[SENTRIX] Jobcore'
 
 version '1.0.0'
 
