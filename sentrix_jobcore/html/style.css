@@ -5,9 +5,11 @@
 }
 
 body {
-  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
   background: transparent;
   overflow: hidden;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 .hidden {
@@ -23,24 +25,25 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  background: rgba(0, 0, 0, 0.7);
+  background: rgba(0, 0, 0, 0.85);
   z-index: 1000;
 }
 
 .job-panel {
-  background: linear-gradient(145deg, #1a1a1a, #0f0f0f);
-  border: 2px solid #2563eb;
-  border-radius: 16px;
-  width: 420px;
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.8), 0 0 20px rgba(37, 99, 235, 0.3);
+  background: #000000;
+  border: 1px solid rgba(0, 130, 234, 0.2);
+  border-radius: 20px;
+  width: 440px;
+  box-shadow: 0 25px 50px rgba(0, 0, 0, 0.9), 0 0 0 1px rgba(255, 255, 255, 0.05), inset 0 1px 0
+    rgba(255, 255, 255, 0.1);
   overflow: hidden;
-  animation: slideIn 0.3s ease-out;
+  animation: slideIn 0.4s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 @keyframes slideIn {
   from {
     opacity: 0;
-    transform: translateY(-20px) scale(0.95);
+    transform: translateY(20px) scale(0.96);
   }
   to {
     opacity: 1;
@@ -49,105 +52,147 @@ body {
 }
 
 .panel-header {
-  background: linear-gradient(135deg, #2563eb, #1d4ed8);
-  padding: 20px;
+  background: linear-gradient(135deg, #000000 0%, #0a0a0a 100%);
+  border-bottom: 1px solid rgba(0, 130, 234, 0.1);
+  padding: 24px;
+}
+
+.header-content {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  position: relative;
 }
 
-.panel-header::after {
-  content: "";
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  height: 1px;
-  background: linear-gradient(90deg, transparent, #60a5fa, transparent);
-}
-
-.job-title {
+.job-info {
   display: flex;
   align-items: center;
-  gap: 12px;
-  color: white;
-  font-size: 18px;
-  font-weight: 600;
+  gap: 16px;
 }
 
-.job-title i {
+.job-icon {
+  width: 48px;
+  height: 48px;
+  background: rgba(0, 130, 234, 0.1);
+  border: 1px solid rgba(0, 130, 234, 0.2);
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: rgb(0, 130, 234);
   font-size: 20px;
 }
 
-.level-badge {
-  background: rgba(255, 255, 255, 0.2);
-  padding: 4px 12px;
-  border-radius: 20px;
-  font-size: 12px;
+.job-details {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.job-title {
+  color: #ffffff;
+  font-size: 20px;
+  font-weight: 600;
+  line-height: 1.2;
+}
+
+.job-level {
+  color: rgb(0, 130, 234);
+  font-size: 14px;
   font-weight: 500;
-  backdrop-filter: blur(10px);
 }
 
 .close-btn {
-  background: rgba(255, 255, 255, 0.1);
-  border: none;
-  color: white;
-  width: 32px;
-  height: 32px;
-  border-radius: 8px;
+  width: 36px;
+  height: 36px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 10px;
+  color: #ffffff;
   cursor: pointer;
   display: flex;
   align-items: center;
   justify-content: center;
   transition: all 0.2s ease;
+  font-size: 14px;
 }
 
 .close-btn:hover {
-  background: rgba(255, 255, 255, 0.2);
+  background: rgba(255, 255, 255, 0.1);
+  border-color: rgba(255, 255, 255, 0.2);
   transform: scale(1.05);
 }
 
 .panel-content {
-  padding: 24px;
+  padding: 32px 24px 24px;
 }
 
 .xp-section {
-  margin-bottom: 24px;
+  margin-bottom: 32px;
 }
 
-.xp-info {
+.xp-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 12px;
+  margin-bottom: 16px;
 }
 
-.xp-text {
-  color: #e5e7eb;
+.section-title {
+  color: #ffffff;
   font-size: 16px;
   font-weight: 600;
 }
 
-.xp-status {
-  color: #9ca3af;
-  font-size: 12px;
+.xp-numbers {
+  display: flex;
+  align-items: baseline;
+  gap: 4px;
+  color: #ffffff;
+  font-weight: 600;
+}
+
+#current-xp {
+  font-size: 18px;
+  color: rgb(0, 130, 234);
+}
+
+.xp-separator {
+  font-size: 16px;
+  color: #666666;
+}
+
+#needed-xp {
+  font-size: 16px;
+  color: #cccccc;
+}
+
+.xp-label {
+  font-size: 14px;
+  color: #888888;
+  font-weight: 500;
+}
+
+.xp-progress-container {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
 }
 
 .xp-bar {
-  background: #374151;
-  height: 8px;
-  border-radius: 4px;
+  height: 6px;
+  background: rgba(255, 255, 255, 0.08);
+  border-radius: 3px;
   overflow: hidden;
   position: relative;
 }
 
 .xp-progress {
-  background: linear-gradient(90deg, #2563eb, #60a5fa);
   height: 100%;
-  border-radius: 4px;
-  transition: width 0.5s ease;
+  background: linear-gradient(90deg, rgb(0, 130, 234), rgb(0, 150, 255));
+  border-radius: 3px;
+  transition: width 0.6s cubic-bezier(0.16, 1, 0.3, 1);
   position: relative;
+  overflow: hidden;
 }
 
 .xp-progress::after {
@@ -170,6 +215,12 @@ body {
   }
 }
 
+.xp-status {
+  color: #888888;
+  font-size: 13px;
+  font-weight: 500;
+}
+
 .actions-section {
   display: flex;
   flex-direction: column;
@@ -177,16 +228,15 @@ body {
 }
 
 .action-btn {
-  background: linear-gradient(145deg, #1f2937, #111827);
-  border: 1px solid #374151;
-  color: white;
-  padding: 16px 20px;
-  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 16px;
+  padding: 20px;
   cursor: pointer;
   display: flex;
   align-items: center;
   gap: 16px;
-  transition: all 0.3s ease;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
   position: relative;
   overflow: hidden;
 }
@@ -198,7 +248,7 @@ body {
   left: -100%;
   width: 100%;
   height: 100%;
-  background: linear-gradient(90deg, transparent, rgba(37, 99, 235, 0.1), transparent);
+  background: linear-gradient(90deg, transparent, rgba(0, 130, 234, 0.05), transparent);
   transition: left 0.5s ease;
 }
 
@@ -207,54 +257,70 @@ body {
 }
 
 .action-btn:hover {
-  border-color: #2563eb;
+  background: rgba(255, 255, 255, 0.05);
+  border-color: rgba(0, 130, 234, 0.3);
   transform: translateY(-2px);
-  box-shadow: 0 8px 20px rgba(37, 99, 235, 0.3);
+  box-shadow: 0 8px 32px rgba(0, 130, 234, 0.15);
 }
 
-.action-btn.clock-in:hover {
-  background: linear-gradient(145deg, #065f46, #047857);
-  border-color: #10b981;
+.btn-icon {
+  width: 44px;
+  height: 44px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+  flex-shrink: 0;
 }
 
-.action-btn.clock-out:hover {
-  background: linear-gradient(145deg, #7f1d1d, #991b1b);
-  border-color: #ef4444;
+.clock-in-icon {
+  background: rgba(34, 197, 94, 0.1);
+  border: 1px solid rgba(34, 197, 94, 0.2);
+  color: #22c55e;
 }
 
-.action-btn i {
-  font-size: 20px;
-  color: #2563eb;
-  transition: color 0.3s ease;
-}
-
-.action-btn.clock-in i {
-  color: #10b981;
-}
-
-.action-btn.clock-out i {
+.clock-out-icon {
+  background: rgba(239, 68, 68, 0.1);
+  border: 1px solid rgba(239, 68, 68, 0.2);
   color: #ef4444;
 }
 
 .btn-content {
+  flex: 1;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
+  gap: 2px;
 }
 
 .btn-title {
+  color: #ffffff;
   font-size: 16px;
   font-weight: 600;
-  margin-bottom: 2px;
+  line-height: 1.2;
 }
 
 .btn-desc {
-  font-size: 12px;
-  color: #9ca3af;
+  color: #888888;
+  font-size: 13px;
+  font-weight: 500;
+}
+
+.btn-arrow {
+  color: #666666;
+  font-size: 14px;
+  transition: all 0.3s ease;
+  flex-shrink: 0;
+}
+
+.action-btn:hover .btn-arrow {
+  color: rgb(0, 130, 234);
+  transform: translateX(4px);
 }
 
 .action-btn.disabled {
-  opacity: 0.5;
+  opacity: 0.4;
   cursor: not-allowed;
   pointer-events: none;
 }
@@ -264,17 +330,50 @@ body {
   box-shadow: none;
 }
 
+.action-btn.disabled .btn-arrow {
+  transform: none;
+}
+
 @media (max-width: 480px) {
   .job-panel {
-    width: 90vw;
-    margin: 20px;
+    width: calc(100vw - 32px);
+    margin: 16px;
   }
 
   .panel-header {
-    padding: 16px;
+    padding: 20px;
   }
 
   .panel-content {
-    padding: 20px;
+    padding: 24px 20px 20px;
   }
+
+  .job-title {
+    font-size: 18px;
+  }
+
+  .action-btn {
+    padding: 18px;
+  }
+
+  .btn-icon {
+    width: 40px;
+    height: 40px;
+    font-size: 16px;
+  }
+}
+
+.job-panel {
+  position: relative;
+}
+
+.job-panel::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(0, 130, 234, 0.5), transparent);
+  border-radius: 20px 20px 0 0;
 }
