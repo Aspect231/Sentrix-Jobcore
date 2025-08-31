@@ -23,10 +23,12 @@ function openJobMenu(data) {
   document.getElementById("job-level").textContent = `Level ${data.xpData.level}`
 
   updateXPDisplay(data.xpData)
-
   updateButtonStates(data.isClockedIn)
 
-  document.getElementById("jobcore-container").classList.remove("hidden")
+  const container = document.getElementById("jobcore-container")
+  container.classList.remove("hidden")
+
+  container.focus()
 }
 
 function updateXPDisplay(xpData) {
@@ -39,13 +41,17 @@ function updateXPDisplay(xpData) {
     currentXP.textContent = xpData.xp
     neededXP.textContent = xpData.xp
     xpProgress.style.width = "100%"
-    xpStatus.textContent = "Max Level Reached"
+    xpStatus.textContent = "Maximum level reached"
   } else {
     currentXP.textContent = xpData.progress
     neededXP.textContent = xpData.needed
     const progressPercent = Math.floor((xpData.progress / xpData.needed) * 100)
-    xpProgress.style.width = `${progressPercent}%`
-    xpStatus.textContent = `Level ${xpData.level} Progress`
+
+    setTimeout(() => {
+      xpProgress.style.width = `${progressPercent}%`
+    }, 100)
+
+    xpStatus.textContent = `${progressPercent}% complete`
   }
 }
 
@@ -65,6 +71,12 @@ function updateButtonStates(isClockedIn) {
 function clockIn() {
   if (!currentJobData) return
 
+  const button = document.getElementById("clock-in-btn")
+  if (button.classList.contains("disabled")) return
+
+  button.style.opacity = "0.7"
+  button.style.pointerEvents = "none"
+
   fetch(`https://sentrix_jobcore/clockAction`, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
@@ -73,6 +85,9 @@ function clockIn() {
       jobName: currentJobData.jobName,
       jobData: currentJobData.jobData,
     }),
+  }).finally(() => {
+    button.style.opacity = ""
+    button.style.pointerEvents = ""
   })
 
   closeUI()
@@ -80,6 +95,12 @@ function clockIn() {
 
 function clockOut() {
   if (!currentJobData) return
+
+  const button = document.getElementById("clock-out-btn")
+  if (button.classList.contains("disabled")) return
+
+  button.style.opacity = "0.7"
+  button.style.pointerEvents = "none"
 
   fetch(`https://sentrix_jobcore/clockAction`, {
     method: "POST",
@@ -89,14 +110,26 @@ function clockOut() {
       jobName: currentJobData.jobName,
       jobData: currentJobData.jobData,
     }),
+  }).finally(() => {
+    button.style.opacity = ""
+    button.style.pointerEvents = ""
   })
 
   closeUI()
 }
 
 function closeUI() {
-  document.getElementById("jobcore-container").classList.add("hidden")
-  currentJobData = null
+  const container = document.getElementById("jobcore-container")
+
+  container.style.opacity = "0"
+  container.style.transform = "scale(0.95)"
+
+  setTimeout(() => {
+    container.classList.add("hidden")
+    container.style.opacity = ""
+    container.style.transform = ""
+    currentJobData = null
+  }, 200)
 
   fetch(`https://sentrix_jobcore/closeUI`, {
     method: "POST",
@@ -113,4 +146,8 @@ document.addEventListener("keydown", (event) => {
 
 document.addEventListener("contextmenu", (event) => {
   event.preventDefault()
+})
+
+document.addEventListener("DOMContentLoaded", () => {
+  document.body.style.transition = "all 0.3s ease"
 })
